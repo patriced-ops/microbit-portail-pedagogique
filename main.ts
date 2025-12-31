@@ -64,43 +64,11 @@ namespace portail {
      * Indique si un capteur est activé
      */
     //% block="capteur %capteur activé"
-    export function capteurActif(capteur: CapteurPortail): OuiNon {
+    function capteurActif(capteur: CapteurPortail): OuiNon {
         return pins.digitalReadPin(pinCapteur(capteur)) == 1
             ? OuiNon.OUI
             : OuiNon.NON
-        /**
-     * Commande le moteur du portail
-     */
-        //% block="action portail : %action"
-        function actionPortail(action: ActionPortail): void {
-            switch (action) {
-                case ActionPortail.Ouvrir:
-                    pins.digitalWritePin(pinOuvrir(), 1)
-                    pins.digitalWritePin(pinFermer(), 0)
-                    break
-
-                case ActionPortail.Fermer:
-                    pins.digitalWritePin(pinOuvrir(), 0)
-                    pins.digitalWritePin(pinFermer(), 1)
-                    break
-
-                case ActionPortail.Arreter:
-                    pins.digitalWritePin(pinOuvrir(), 0)
-                    pins.digitalWritePin(pinFermer(), 0)
-                    break
-            }
-        }
-
-        /**
-         * Commande le voyant
-         */
-        //% block="%etat"
-        function voyant(etat: VoyantEtat): void {
-            pins.digitalWritePin(pinVoyant(),
-                etat == VoyantEtat.Allumer ? 1 : 0)
-        }
     }
-
 
     /**
      * Version logique pour les conditions
@@ -109,4 +77,31 @@ namespace portail {
     function capteur(capteur: CapteurPortail): boolean {
         return pins.digitalReadPin(pinCapteur(capteur)) == 1
     }
+    /**
+     * Commande le moteur du portail
+     */
+    //% block="action portail : %action"
+    export function actionPortail(action: ActionPortail): void {
+        switch (action) {
+            case ActionPortail.Ouvrir:
+                pins.digitalWritePin(pinOuvrir(), 1)
+                pins.digitalWritePin(pinFermer(), 0)
+                break
+
+            case ActionPortail.Fermer:
+                pins.digitalWritePin(pinOuvrir(), 0)
+                pins.digitalWritePin(pinFermer(), 1)
+                break
+
+            case ActionPortail.Arreter:
+                pins.digitalWritePin(pinOuvrir(), 0)
+                pins.digitalWritePin(pinFermer(), 0)
+                break
+        }
+    }
+
+
+
+
+    
 }
