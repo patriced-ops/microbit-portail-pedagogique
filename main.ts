@@ -64,7 +64,7 @@ namespace portail {
      * Indique si un capteur est activé
      */
     //% block="capteur %capteur activé"
-    function capteurActif(capteur: CapteurPortail): OuiNon {
+    export function capteurActif(capteur: CapteurPortail): OuiNon {
         return pins.digitalReadPin(pinCapteur(capteur)) == 1
             ? OuiNon.OUI
             : OuiNon.NON
@@ -74,7 +74,7 @@ namespace portail {
      * Version logique pour les conditions
      */
     //% block="capteur %capteur est activé"
-    function capteur(capteur: CapteurPortail): boolean {
+    export function capteur(capteur: CapteurPortail): boolean {
         return pins.digitalReadPin(pinCapteur(capteur)) == 1
     }
     /**
