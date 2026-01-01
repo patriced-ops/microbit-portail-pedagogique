@@ -99,16 +99,18 @@ namespace portail {
                 break
         }
     }
+    /**
+     * Commande le voyantEtat
+     */
+    //% block="action Voyant : %action"
     export function voyantEtat(action: VoyantEtat): void {
         switch (action) {
             case VoyantEtat.Allumer:
-                pins.digitalWritePin(pinOuvrir(), 1)
-                pins.digitalWritePin(pinFermer(), 0)
+                pins.digitalWritePin(pinVoyant(), 1)
                 break
 
             case VoyantEtat.Eteindre:
-                pins.digitalWritePin(pinOuvrir(), 0)
-                pins.digitalWritePin(pinFermer(), 1)
+                pins.digitalWritePin(pinVoyant(), 0)
                 break
 
             
