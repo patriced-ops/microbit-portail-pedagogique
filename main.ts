@@ -99,7 +99,21 @@ namespace portail {
                 break
         }
     }
+    export function voyantEtat(action: VoyantEtat): void {
+        switch (action) {
+            case VoyantEtat.Allumer:
+                pins.digitalWritePin(pinOuvrir(), 1)
+                pins.digitalWritePin(pinFermer(), 0)
+                break
 
+            case VoyantEtat.Eteindre:
+                pins.digitalWritePin(pinOuvrir(), 0)
+                pins.digitalWritePin(pinFermer(), 1)
+                break
+
+            
+        }
+    }
 
 
 
